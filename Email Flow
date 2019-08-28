@@ -1,0 +1,67 @@
+   
+EMAIL FLOW
+
+PART 1
+
+----------------------
+
+(1)EMAIL CLIENT --> (2)SENDER SMTP (email goes into smtp server) --> (3)EMAIL QUEUE --> (4)when email comes in smtp server it need to look where domain is     |
+               |
+              V
+
+ domain name are looked up on DNS --> (5)DNS(the dns returns the IP address of where the email is going)	return to sender smtp
+
+
+
+Now the sender smtp server knows where to send your email(6) --> first the smtp server must connect with the recipients smtp server --> (8)ROUTER (the router takes the IP address and find the fastest path) --> (9)FIREWALL(through the firewall)--> (10)INTERNET(on the internet connection hops from router to router) --> ROUTER --> ROUTER --> (10)ROUTER(the last hop exits the internet pass through the fire wall of the recipient network) --> (11)FIREWALL(the last hop exit the internet and pass through the firewall of the recipient network) --> (12)ROUTER(through the recipient router) --> (13)ESA --> (14) RECIVER SMTP (to the recipient smtp server) 
+
+
+
+NOTE: It has not been sent yet , all of this happens just to establish a connection.
+
+
+
+========================================================================================================================================================================
+
+
+
+ PART 2
+
+----------------------------
+
+
+
+(15)PART 1(the sender smtp server says HELO) --> (16)PART 1 (the receiver smtp responds with HELO) --> (17)PART 1(the sending SMTP says i want to send an email) --> (18) then there is a dns validation that the sender is who they say
+
+
+
+they are if valid the receiving smtp responds with OK)
+
+
+
+NOTE: to establish a connection smtp session 
+
+
+
+===========================================================================================================================================================================
+
+
+
+PART 3
+
+-----------------------------
+
+
+
+(19)SENDER SMTP (the sending smtp pushes the email to router for delivery) --> (20)ROUTER (the router breaks the email into pieces i.e packets) --> (21)(step 9 - step 11)(the packets are send one at a time) --> (22)ROUTER (the recipient
+
+
+
+router puts the pieces of email back together paket by packet) --> (23) DMZ WITH FIREWALL (behind the firewall) => public listner inbound mail => IPv4 Interface: public Net1 => ethernet interface => IP Interface Net2 => private 
+
+ IPv6-2001:odb8:8593::892e:0370:3752 
+
+listener: outbound mail --> (24)ESA (for checking) --> RECEIVER SMTP (the email deliver to internal smtp server) --> (25)EMAIL QUEUE --> POP3/MIME --> CLIENT
+
+
+
