@@ -1,0 +1,33 @@
+PATHS:-
+--------------------------
+
+TO SEND MAILS FROM BSD:-
+----------------------------------------------------------------------------
+
+Open putty-----> host name ------> port number ------> in proxy change to http ------> proxy host name------->login (testuser) -----> password (ironport)-----> pwd -----> change the directory (cd work/sarf/tests/testdata/esa/) -----> ls -----> 
+
+============================================================================================================
+
+TO CHECK THE MAIL LOGS:-
+---------------------------------------------------------------------------------
+
+Open putty-----> host name ------> port number ------> in proxy change to http ------> proxy host name------->login (rtestuser) -----> password(ironport)---->pwd------>change directory (cd /data/pub/mail_logs)---> or check mail in detail( tail -f mail.current)---->
+
+==============================================================================================================
+
+TO UPGRADE THE ESA
+---------------------------------------------------------
+
+1) Login to ESA via putty
+2) Type cli
+3) type upgrade and enter
+4) select VALIDATE_CERTIFICATE =no
+5) type dynamichost enter
+6) type update-manifests.ironport.com
+7) commit
+8) Type upgrade and enter
+9) select download install
+10)Select 12.8.2079 build and enter 
+
+===============================================================================================================
+
