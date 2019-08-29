@@ -1,0 +1,31 @@
+Automation testing 
+-----------------------------
+1. Decrease cost and time of testing.
+2. Enable continuous delivery through round the clock testing.
+3. Ensure regression testing.
+4. Increased the test coverage.
+5. Cross device testing made- easy.
+
+Layers of Test automation 
+--------------------------------------
+3. user interface tests
+2. service/API layer tests
+1. Unit tests
+
+Unit tests
+---------------------
+It pinpoint bugs in code to level of line where it has occured. They are used to test small pieces of code and hence, 
+can not be used for integration testing or system testing.
+
+UI
+----------
+It is used to test only the functionality of the UI elements.
+
+Service/API layer tests
+---------------------------------
+It tests the functionality in terms of services. A service is a function or an operatiuon that the application performs on some input
+to produce an output.
+
+The aim of service layer of testing is to seperate UI testing from functionality testing.
+
+For unit testing and API testing, the python libraries unittest, pytest and nose provide support for UI level testing.
