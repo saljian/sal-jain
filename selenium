@@ -1,0 +1,11 @@
+AGENDA
+================
+
+1. Install python on windows
+2. Install selenium with python
+3. configure selenium with python
+
+COMMAND
+=================
+
+In command propmt we have to execute onr command "pip install -U selenium" it will download selenium libraries to python.
