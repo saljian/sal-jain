@@ -1,0 +1,9 @@
+FLASK FRAMEWORK DETAILS
+=============================================
+
+Flask is a micro frameworkused for website and Web API development.Being a micro framework means it has a simple core and it is easily
+extendable. 
+Flask is using the Jinja2 template engine with works with WSGI tookit. WSGI stands for Web Server Gateway Interface.A standard interface
+between web servers and web applications. 
+Flask is a framework with batteries included. In many cases, even Python is mentioned as a programming language with batteries included.
+This means the Flask framework supports building extensions.
