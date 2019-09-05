@@ -6,6 +6,8 @@ Automation testing
 4. Increased the test coverage.
 5. Cross device testing made- easy.
 
+======================================================================================================================================
+
 Layers of Test automation 
 --------------------------------------
 3. user interface tests
@@ -17,15 +19,103 @@ Unit tests
 It pinpoint bugs in code to level of line where it has occured. They are used to test small pieces of code and hence, 
 can not be used for integration testing or system testing.
 
+
 UI
 ----------
 It is used to test only the functionality of the UI elements.
 
 Service/API layer tests
 ---------------------------------
+
 It tests the functionality in terms of services. A service is a function or an operatiuon that the application performs on some input
 to produce an output.
 
 The aim of service layer of testing is to seperate UI testing from functionality testing.
 
 For unit testing and API testing, the python libraries unittest, pytest and nose provide support for UI level testing.
+
+==================================================================================================================================
+
+What is unit testing?
+--------------------------------------
+
+Unit tests validate individual functions in the production code. 
+
+Unit tests are generally the most comprehensive test which should test all positive and negative test cases for a function.
+
+Unit testing test individual functions in the code. Each test case for the function should have a corresponding unit test. 
+
+Groups of unit tests can be combined into test suites which can help with organizing the test. 
+
+The unit test should executein your development environment rather than the production environment. 
+
+This is important to ensure that you can run them easily and often. 
+
+And lastly, the unit test should be implemented in an automated fashion.
+
+eg. Here the one example of unit testing of production code:-
+
+import pytest
+ #production code
+ def str_len(the str):
+    return len(the str)
+    
+ # A unit test
+ def_test String _length():
+    testStr = "1"
+    result = str_len(testStr)
+    assert result == 1
+    
+    The production code is the function that returns the length of past in string. The unit test is a single positive test case that 
+    verifies the length of one has returned for a string with one character in it. 
+    The test string length call is the unit test for the string length production code.
+    
+    The unit test performs three steps.
+   i)   A setup step where it creates a test string. 
+   ii)  An action step where calls a production code to perform the action that is under test. 
+   iii) And then an assertion step, where the test validates results of the action. 
+   
+   This is a common structure that all of your unit test should follow. 
+   
+   Unit tests are first safety net for catching bugs in the production code. 
+   Unit test validate test cases for individual functions. They should build and run in the development environment. 
+   And unit test should run fast. We ideally want a developer re-running the unit test every three to five minutes and this can be 
+   difficult with a slow build process or if any of the tests runs slow, an example, more than a just a few seconds. 
+  
+  ===============================================================================================================================
+  
+   What is test driven developement?
+   ----------------------------------------------------
+   
+   TDD is a process for writing code that helps you take personal responsibility for the quality of your code. The process drives this 
+   by having you write the unit tests before the production code.That doesn't mean that all the tests are written first. You write one 
+   unit test for one test case and then you write the production code to make it pass. The tests and the production code are written
+   together with small tests being written and then small bits of production code that make those tests pass. This short cycle of 
+   writing a unit test and then writing the production code to make it pass provides immediate feedback on the code. 
+   This feedback is one of the essential features of TDD. 
+   
+   DD was created by Kent Beck in the mid 1990s as part of his work for the Chrysler Corporation where he also created Extreme 
+   Programming, of which TDD is just a part. He then went on to create one of the first unit testing frameworks for TDD in Smalltalk
+   called SUnit. Then he collaborated with Erich Gamma to implement the first Java unit testing framework called JUnit.
+   
+   ===============================================================================================================================
+   
+   Benifites of TDD
+   ----------------------------------------------------
+   i) Gives you confidence to change the code.
+   ii)Gives you immidiate feedback.
+   iii)Documents what code is doing
+   iv) Helps in drives good object oriented design.
+   
+   ===============================================================================================================================
+   
+   TDD workflow
+   -----------------------------------------------
+   
+   TDD has following phase in its work folw.
+   (i) Red phase:- In the red phase, you write a failing unit test for the next bit of functionality you want to implement in the
+                   production code. 
+   (ii)Green phase:- Here you write just enough production code to make the failing unit test pass.
+   (iii)Refactor phase:- here you clean up the unit test and the production code to remove any duplication and make sure the code 
+                         follows your team's coding standards and best practices. 
+   
