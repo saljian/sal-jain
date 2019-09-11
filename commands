@@ -1,0 +1,9 @@
+For checking present directories:-------------------------------------------------------------------------------pwd
+For checking informations about files and directories:----------------------------------------------------------ls 
+For checking informations about files and directories(LONG LISTING)---------------------------------------------ls -1
+For cjhanging directories:--------------------------------------------------------------------------------------cd 
+To go to ESA directory:-----------------------------------------------------------------------------------------cd tests/testdata/esa/
+to load engine license:--------------------------------------------------------cli->loadlicense->1->copy paste license code->ctrl+d
+to configure the listener properties-------------------------------------------------------------------------listnerconfig
+to config mail of bsd--------------------------------------------------------------------------------------vi community.mbox
+To enable trailblazer port------------------------------------------------------cli->trailblazerconfig enable 20888(port number)
