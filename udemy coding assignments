@@ -1,3 +1,7 @@
+==============================================================================================================================
+ASSIGNMENT-1
+===============================================================================================================================
+
 1. Write a program to read a temperature in celcious and print its equivalent fahrenheight reading.
 
 Sol:-  celcius=(int(input("Please enter your temperature in celcius: ")))
@@ -81,7 +85,16 @@ Sol:-Sol:num=(int(input("Enter your number: ")))
 Sol:-name=(input("Enter your name: "))
      print("Welcome",name)
 
-Write a Python program that reads a number of seconds and prints it in the format - hrs:min:secs
+11.Write a Python program that reads a number of seconds and prints it in the format - hrs:min:secs
 
-Write a Python program to read a number from the user and print its first five multiples.
+Sol:- sec=(int(input("Enter your time in seconds: ")))
+       hr=sec//3600
+       min=((sec%3600)//60)
+       seco=((sec%3600)%60)
+       print(hr,":",min,":",seco)
+
+12.Write a Python program to read a number from the user and print its first five multiples.
+
+Sol:-num=(int(input("Enter your number: ")))
+     print(num*1,num*2,num*3,num*4,num*5)
 
