@@ -42,6 +42,7 @@ NETINSTALLATION OF ESA
 
 Netinstall(ESA):
 =================
+
 >> Links:
 http://u32c01p21-vrouter.cisco.com/netinstall.cgi
 http://install.ibeng.sgg.cisco.com/netinstall.cgi
@@ -50,10 +51,9 @@ http://install.ibeng.sgg.cisco.com/netinstall.cgi
         go to http://u32c01p21-vrouter.cisco.com/netinstall.cgi
         click edit for ur machine and select the build and save it
         On the esa:
-              cli
               reinst - (reinstall command)
-        (Netinstall is like fresh install with a new image/label.)
-        (You will lose all the configurations)
+              (Netinstall is like fresh install with a new image/label.)
+              (You will lose all the configurations)
 
 
 
