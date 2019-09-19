@@ -97,4 +97,103 @@ Sol:- sec=(int(input("Enter your time in seconds: ")))
 
 Sol:-num=(int(input("Enter your number: ")))
      print(num*1,num*2,num*3,num*4,num*5)
+     
+========================================================================================================================================
+ASSIGNMENT 2
+========================================================================================================================================
+
+1.Write a Python program to check if a year is a leap year or not.
+
+Sol: num=int(input("Enter a your year: "))
+     if(num%4==0 or num%400==0):
+       print("Given year is a leap year.")
+     elif(num%100==0):
+       print("Not leap year")
+
+2.Write a Python program to read a number from the user and print the reversed number.
+
+Sol: num=int(input("Enter a your number: "))
+     print("Reverse of",num,"is: ",end="")
+     while(num!=0):
+        print(num%10,end="")
+        num=num//10
+
+3.Write a Python program to find the largest of 3 numbers.
+
+Sol:num1=int(input("Enter 1st  number: "))
+    num2=int(input("Enter 2nd  number: "))
+    num3=int(input("Enter 3rd  number: "))
+    max=num1 if num1>num2 and num1>num3 else num2 if num2>num3 else num3
+    print("Largest value is: ",max)
+
+4.Write a Python program to check if a number is positive or negative.
+
+Sol:num=int(input("Enter your  number: "))
+    if(num>0):
+       print("Given number is positive")
+    else:
+       print("Given number is negative")
+
+
+5.Write a Python program that inputs three numbers and calculates two sums as per this:
+Sum 1 as the sum of all numbers.
+Sum 2 as the sum of non-duplicate numbers, if there are duplicates, then ignore them.
+
+Sol:num1=int(input("Enter your first number: "))
+num2=int(input("Enter your second number: "))
+num3=int(input("Enter your third number: "))
+if(num1!=num2 or num1!=num3 or num2!=num3):
+    print("Sum 1 is: ",num1+num2+num3)
+if(num1==num2 or num2==num3):
+    print("Sum 2 is: ",num1+num3)
+if(num1==num3):
+    print("Sum 2 is: ",num1+num2)
+
+
+6.Write a Python program to check if a number is divisible by another number of not.
+
+Sol: x=int(input("Input number: "))
+count=1
+for i in range(2,x+1):
+    if(x%i==0):
+        count+1
+if(count==2):
+    print("Not divisible by any other numbers")
+else:
+    print("Divisible by other numbers")
+
+7.Write a Python program to read three numbers and print them in ascending order.
+
+Sol:x = int(input("Input first number: "))
+y = int(input("Input second number: "))
+z = int(input("Input third number: "))
+
+a1 = min(x, y, z)
+a3 = max(x, y, z)
+a2 = (x + y + z) - a1 - a3
+print("Numbers in sascending order: ", a1, a2, a3)
+
+8.Write a Python program to read today’s date from the user and print how many days are there in the current month.
+
+9.Write a Python program to print the table of a number entered by the user.
+
+10.Write a Python program to print the sum of first n natural numbers, where n is entered by the user.
+
+11.Write a Python program to calculate and print the sums of odd and even integers of the first n natural numbers.
+
+12.Write a Python program to print the following pattern:
+
+Example: n=5
+
+* * * * *
+
+* * * *
+
+* * *
+
+* *
+
+*
+
+
 
