@@ -38,3 +38,15 @@ To EDIT MAIL COMMANDS:-
 
 --attach-filename=N[,N...] Filename(s) of attachments to use (All the files specified will be attached to all messages sent.)
 
+==============================================================================
+
+FOR SENDING ONE MAILS:-
+-------------------------------------------------------------------------------------------
+
+mail from: <my csco ID>
+rcpt to: <mail id>
+data
+hello
+.
+========================================================================================
+
