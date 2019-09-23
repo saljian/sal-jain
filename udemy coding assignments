@@ -174,12 +174,32 @@ a2 = (x + y + z) - a1 - a3
 print("Numbers in sascending order: ", a1, a2, a3)
 
 8.Write a Python program to read today’s date from the user and print how many days are there in the current month.
+Sol: 
 
 9.Write a Python program to print the table of a number entered by the user.
+Sol: num=int(input("Enter your number: "))
+for i in range(1,11):
+    mul=num*i
+    print(num,"x",i,"=",mul)
 
 10.Write a Python program to print the sum of first n natural numbers, where n is entered by the user.
+Sol:num=int(input("Enter your number: "))
+sum=0
+for i in range(0,num+1):
+    sum=sum+i
+print("Sum of first ",num,"natural number is: ",sum)
 
 11.Write a Python program to calculate and print the sums of odd and even integers of the first n natural numbers.
+Sol: num=int(input("Enter your number: "))
+sum1=0
+sum2=0
+for i in range(0,num+1):
+    if(i%2==0):
+        sum1=sum1+i
+    else:
+        sum2=sum2+i
+print("Sum of first",num,"even naturals numbers is: ",sum1)
+print ("Sum of first",num,"odd naturals numbers is: ",sum2)
 
 12.Write a Python program to print the following pattern:
 
@@ -194,6 +214,11 @@ Example: n=5
 * *
 
 *
+Sol: num=int(input("Enter your number: "))
+for i in range(1,num+1):
+    for j in range(1,(num+2)-i):
+        print("*",end=" ")
+    print()
 
 
 
