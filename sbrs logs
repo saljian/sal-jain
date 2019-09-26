@@ -1,9 +1,804 @@
-telnet /tmp/hermes.bd
-import repeng
-repeng.REPENG_DEBUG = True
-/data/log/heimdall/repeng/repeng.current
-IV
-Ilakkia Vinayagam-X(ilvinaya - ARICENT TECHNOLOGIES MAURIITIUS LIMITED at Cisco)2:32 PM
+File reputation filter communicating with talos(Its engine which having DB containig black list and whitelist ip address).
+To communicate with talos repeng module is there,  which is present inside the hermes process(it is the parent process of ESA inside 
+which every process is there).
+so we have to import repenge and then write this as true "repeng.REPENG_DEBUG".
+With the help of this we are able to check that the information which is given by the DNS to the ESA about the reputation, ipaddress etc of
+ESA.
+
+Steps:-
+------------------------------------------------------------------------------------------------------------------
+
+1.login to ESA through SSH.
+2.give command "telnet /tmp/hermes.bd".
+3.give command "import repeng".
+4.now give "repeng.REPENG_DEBUG"(incase if it is False) the write "repeng.REPENG_DEBUG=True" .
+5.now give command "tail -f /data/log/heimdall/repeng/repeng.current".
+6.Send mails and check the mail logs.
+
+Snap of logs
+-------------------------------------------------------------------------------------------------------------------
+
+login as: rtestuser
+Keyboard-interactive authentication prompts from server:
+| rtestuser@vm21esa0088.cs21's password:
+End of keyboard-interactive prompts from server
+AsyncOS 13.0.0 for Cisco C100V build 312
+
+Welcome to the Cisco C100V Email Security Virtual Appliance
+vm21esa0088:rtestuser 1] telnet /tmp/hermes.bd
+Trying /tmp/hermes.bd...
+Connected to /tmp/hermes.bd.
+Escape character is '^]'.
+Python 2.6.4 (r264:75706, Sep 17 2019, 23:54:08)
+[GCC 4.2.1 Compatible FreeBSD Clang 3.4.1 (tags/RELEASE_34/dot1-final 208032)]
+Copyright (c) 2001-2009 Python Software Foundation.
+All Rights Reserved.
+
+Copyright (c) 2000 BeOpen.com.
+All Rights Reserved.
+
+Copyright (c) 1995-2001 Corporation for National Research Initiatives.
+All Rights Reserved.
+
+Copyright (c) 1991-1995 Stichting Mathematisch Centrum, Amsterdam.
+All Rights Reserved.
+>>> import repeng
+>>> repeng.REPENG_DEBUG
+False
+>>> repeng.REPENG_DEBUG=True
+>>> repeng.REPENG_DEBUG
+True
+>>> Connection closed by foreign host.
+vm21esa0088:rtestuser 2] tail -f /data/log/heimdall/repeng/repeng.current
+         };
+2019-09-26 08:48:36.961 {debug} DNS(id=2626): TXT 1-bcd7d7dce8b29e9a1aa62e6993b5                                                                                            357b.84.4.10.10.v1x2s.rf-adfe2ko9.senderbase.org = NXDOMAIN (cached)
+2019-09-26 08:48:36.961 {debug} sendto(/data/tmp/repeng/tmpv9ZNXo): $SEND1 = {
+           'reply' => {
+                        'sbnp' => {},
+                        'err' => 'NXDOMAIN'
+                      },
+           'id' => '2626'
+         };
+2019-09-26 08:48:42.771 {info} stat: wc=59.967, cache_hit=9, cache_miss=1, cache                                                                                            _neg=10, ru_utime=0.010, ru_stime=0.007, ru_ixrss=96, ru_idrss=29528, ru_isrss=2                                                                                            56, ru_minflt=1, ru_msgsnd=33, ru_msgrcv=33, ru_nvcsw=30, ru_nivcsw=27, cpu=0%
+2019-09-26 08:49:42.799 {info} stat: wc=60.028, ru_utime=0.001, ru_stime=0.000,                                                                                             ru_msgsnd=2, ru_msgrcv=2, ru_nvcsw=6, cpu=0%
+
+
+2019-09-26 08:50:03.770 {debug} recvfrom(/data/tmp/repeng/tmpjjZE7O): $RECV1 = {
+           'cfg' => {
+                      'timeout' => '5',
+                      'mode' => 'norm',
+                      'debug' => {
+                                   'dns' => '1',
+                                   'rpc' => '1'
+                                 },
+                      'sbrsbase' => '23000000000012.sb-adfe2ko9.senderbase.org'
+                    },
+           'req' => 'sbrs',
+           'args' => {
+                       'peer' => {
+                                   'port' => '59651',
+                                   'ipv' => '4',
+                                   'addr' => '10.10.4.84'
+                                 },
+                       'local' => {
+                                    'port' => '25',
+                                    'addr' => '10.10.2.88'
+                                  }
+                     },
+           'id' => '2627'
+         };
+2019-09-26 08:50:03.770 {debug} DNS(id=2627): TXT 84.4.10.10.23000000000012.sb-a                                                                                            dfe2ko9.senderbase.org = 0-48=24|1=QUAD9|4=3249988 (from-cache, ttl=10316s)
+2019-09-26 08:50:03.771 {debug} recvfrom(/data/tmp/repeng/tmpBbxrlp): $RECV1 = {
+           'cfg' => {
+                      'timeout' => '5',
+                      'mode' => 'norm',
+                      'debug' => {
+                                   'dns' => '1',
+                                   'rpc' => '1'
+                                 },
+                      'sbrsbase' => '23000000000012.sb-adfe2ko9.senderbase.org'
+                    },
+           'req' => 'sbrs',
+           'args' => {
+                       'peer' => {
+                                   'port' => '60189',
+                                   'ipv' => '4',
+                                   'addr' => '10.10.4.84'
+                                 },
+                       'local' => {
+                                    'port' => '25',
+                                    'addr' => '10.10.2.88'
+                                  }
+                     },
+           'id' => '2628'
+         };
+2019-09-26 08:50:03.771 {debug} DNS(id=2628): TXT 84.4.10.10.23000000000012.sb-a                                                                                            dfe2ko9.senderbase.org = 0-48=24|1=QUAD9|4=3249988 (from-cache, ttl=10316s)
+2019-09-26 08:50:03.771 {debug} sendto(/data/tmp/repeng/tmpjjZE7O): $SEND1 = {
+           'reply' => {
+                        'sbnp' => {},
+                        'raw' => '0-48=24|1=QUAD9|4=3249988'
+                      },
+           'id' => '2627'
+         };
+2019-09-26 08:50:03.771 {debug} sendto(/data/tmp/repeng/tmpBbxrlp): $SEND1 = {
+           'reply' => {
+                        'sbnp' => {},
+                        'raw' => '0-48=24|1=QUAD9|4=3249988'
+                      },
+           'id' => '2628'
+         };
+2019-09-26 08:50:03.771 {debug} recvfrom(/data/tmp/repeng/tmpVRlxn9): $RECV1 = {
+           'cfg' => {
+                      'use_auth' => '1',
+                      'timeout' => '5',
+                      'mode' => 'norm',
+                      'debug' => {
+                                   'dns' => '1',
+                                   'rpc' => '1'
+                                 },
+                      'sbrsbase' => 'v1x2s.rf-adfe2ko9.senderbase.org'
+                    },
+           'req' => 'sbrs',
+           'args' => {
+                       'peer' => {
+                                   'port' => '59651',
+                                   'ipv' => '4',
+                                   'addr' => '10.10.4.84'
+                                 },
+                       'local' => {
+                                    'port' => '25',
+                                    'addr' => '10.10.2.88'
+                                  }
+                     },
+           'id' => '2629'
+         };
+2019-09-26 08:50:03.771 {debug} DNS(id=2629): TXT? 1-bcd7d7dce8b29e9a1aa62e6993b                                                                                            5357b.84.4.10.10.v1x2s.rf-adfe2ko9.senderbase.org
+2019-09-26 08:50:03.772 {debug} recvfrom(/data/tmp/repeng/tmpSA_MNp): $RECV1 = {
+           'cfg' => {
+                      'use_auth' => '1',
+                      'timeout' => '5',
+                      'mode' => 'norm',
+                      'debug' => {
+                                   'dns' => '1',
+                                   'rpc' => '1'
+                                 },
+                      'sbrsbase' => 'v1x2s.rf-adfe2ko9.senderbase.org'
+                    },
+           'req' => 'sbrs',
+           'args' => {
+                       'peer' => {
+                                   'port' => '60189',
+                                   'ipv' => '4',
+                                   'addr' => '10.10.4.84'
+                                 },
+                       'local' => {
+                                    'port' => '25',
+                                    'addr' => '10.10.2.88'
+                                  }
+                     },
+           'id' => '2630'
+         };
+2019-09-26 08:50:03.772 {debug} DNS(id=2630): TXT? 1-bcd7d7dce8b29e9a1aa62e6993b                                                                                            5357b.84.4.10.10.v1x2s.rf-adfe2ko9.senderbase.org
+2019-09-26 08:50:03.789 {debug} recvfrom(/data/tmp/repeng/tmpMp5Ykr): $RECV1 = {
+           'cfg' => {
+                      'timeout' => '5',
+                      'mode' => 'norm',
+                      'debug' => {
+                                   'dns' => '1',
+                                   'rpc' => '1'
+                                 },
+                      'sbrsbase' => '23000000000012.sb-adfe2ko9.senderbase.org'
+                    },
+           'req' => 'sbrs',
+           'args' => {
+                       'peer' => {
+                                   'port' => '58145',
+                                   'ipv' => '4',
+                                   'addr' => '10.10.4.84'
+                                 },
+                       'local' => {
+                                    'port' => '25',
+                                    'addr' => '10.10.2.88'
+                                  }
+                     },
+           'id' => '2631'
+         };
+
+2019-09-26 08:50:13.282 {debug} DNS(id=2659): TXT 1-bcd7d7dce8b29e9a1aa62e6993b5                                                                                            357b.84.4.10.10.v1x2s.rf-adfe2ko9.senderbase.org = NXDOMAIN (cached)
+2019-09-26 08:50:13.283 {debug} sendto(/data/tmp/repeng/tmpcunvQl): $SEND1 = {
+           'reply' => {
+                        'sbnp' => {},
+                        'err' => 'NXDOMAIN'
+                      },
+           'id' => '2659'
+         };
+2019-09-26 08:50:13.283 {debug} DNS(id=2660): TXT 1-bcd7d7dce8b29e9a1aa62e6993b5                                                                                            357b.84.4.10.10.v1x2s.rf-adfe2ko9.senderbase.org = NXDOMAIN (cached)
+2019-09-26 08:50:13.283 {debug} sendto(/data/tmp/repeng/tmpFgyA5K): $SEND1 = {
+           'reply' => {
+                        'sbnp' => {},
+                        'err' => 'NXDOMAIN'
+                      },
+           'id' => '2660'
+         };
+2019-09-26 08:50:13.283 {debug} DNS(id=2663): TXT 1-bcd7d7dce8b29e9a1aa62e6993b5                                                                                            357b.84.4.10.10.v1x2s.rf-adfe2ko9.senderbase.org = NXDOMAIN (cached)
+2019-09-26 08:50:13.284 {debug} sendto(/data/tmp/repeng/tmptLbW22): $SEND1 = {
+           'reply' => {
+                        'sbnp' => {},
+                        'err' => 'NXDOMAIN'
+                      },
+           'id' => '2663'
+         };
+2019-09-26 08:50:13.284 {debug} DNS(id=2664): TXT 1-bcd7d7dce8b29e9a1aa62e6993b5                                                                                            357b.84.4.10.10.v1x2s.rf-adfe2ko9.senderbase.org = NXDOMAIN (cached)
+2019-09-26 08:50:13.285 {debug} sendto(/data/tmp/repeng/tmpIOCqm4): $SEND1 = {
+           'reply' => {
+                        'sbnp' => {},
+                        'err' => 'NXDOMAIN'
+                      },
+           'id' => '2664'
+         };
+2019-09-26 08:50:13.285 {debug} DNS(id=2666): TXT 1-bcd7d7dce8b29e9a1aa62e6993b5                                                                                            357b.84.4.10.10.v1x2s.rf-adfe2ko9.senderbase.org = NXDOMAIN (cached)
+2019-09-26 08:50:13.285 {debug} sendto(/data/tmp/repeng/tmpU3Kp_1): $SEND1 = {
+           'reply' => {
+                        'sbnp' => {},
+                        'err' => 'NXDOMAIN'
+                      },
+           'id' => '2666'
+         };
+2019-09-26 08:50:35.811 {debug} recvfrom(/data/tmp/repeng/tmpJsF35Y): $RECV1 = {
+           'cfg' => {
+                      'timeout' => '5',
+                      'mode' => 'norm',
+                      'debug' => {
+                                   'dns' => '1',
+                                   'rpc' => '1'
+                                 },
+                      'sbrsbase' => '23000000000012.sb-adfe2ko9.senderbase.org'
+                    },
+           'req' => 'sbrs',
+           'args' => {
+                       'peer' => {
+                                   'port' => '58650',
+                                   'ipv' => '4',
+                                   'addr' => '10.10.4.84'
+                                 },
+                       'local' => {
+                                    'port' => '25',
+                                    'addr' => '10.10.2.88'
+                                  }
+                     },
+           'id' => '2667'
+         };
+2019-09-26 08:50:35.811 {debug} DNS(id=2667): TXT 84.4.10.10.23000000000012.sb-a                                                                                            dfe2ko9.senderbase.org = 0-48=24|1=QUAD9|4=3249988 (from-cache, ttl=10285s)
+2019-09-26 08:50:35.812 {debug} sendto(/data/tmp/repeng/tmpJsF35Y): $SEND1 = {
+           'reply' => {
+                        'sbnp' => {},
+                        'raw' => '0-48=24|1=QUAD9|4=3249988'
+                      },
+           'id' => '2667'
+         };
+2019-09-26 08:50:35.812 {debug} recvfrom(/data/tmp/repeng/tmpSb_byZ): $RECV1 = {
+           'cfg' => {
+                      'use_auth' => '1',
+                      'timeout' => '5',
+                      'mode' => 'norm',
+                      'debug' => {
+                                   'dns' => '1',
+                                   'rpc' => '1'
+                                 },
+                      'sbrsbase' => 'v1x2s.rf-adfe2ko9.senderbase.org'
+                    },
+           'req' => 'sbrs',
+           'args' => {
+                       'peer' => {
+                                   'port' => '58650',
+                                   'ipv' => '4',
+                                   'addr' => '10.10.4.84'
+                                 },
+                       'local' => {
+                                    'port' => '25',
+                                    'addr' => '10.10.2.88'
+                                  }
+                     },
+           'id' => '2668'
+         };
+2019-09-26 08:50:35.812 {debug} DNS(id=2668): TXT? 1-bcd7d7dce8b29e9a1aa62e6993b                                                                                            5357b.84.4.10.10.v1x2s.rf-adfe2ko9.senderbase.org
+2019-09-26 08:50:36.201 {debug} DNS(id=2668): TXT 1-bcd7d7dce8b29e9a1aa62e6993b5                                                                                            357b.84.4.10.10.v1x2s.rf-adfe2ko9.senderbase.org = NXDOMAIN (cached)
+2019-09-26 08:50:36.202 {debug} sendto(/data/tmp/repeng/tmpSb_byZ): $SEND1 = {
+           'reply' => {
+                        'sbnp' => {},
+                        'err' => 'NXDOMAIN'
+                      },
+           'id' => '2668'
+         };
+
+2019-09-26 08:50:42.806 {info} stat: wc=60.007, cache_hit=20, cache_miss=1, cach                                                                                            e_neg=21, ru_utime=0.038, ru_stime=0.009, ru_ixrss=288, ru_idrss=88584, ru_isrss                                                                                            =768, ru_msgsnd=66, ru_msgrcv=66, ru_nvcsw=43, ru_nivcsw=31, cpu=0%
+
+
+2019-09-26 08:51:03.734 {info} RVS configuration fetch error: nxdomain
+2019-09-26 08:51:03.734 {debug} RVS configuration fetch interval: 300s
+
+2019-09-26 08:51:23.509 {debug} recvfrom(/data/tmp/repeng/tmpciERQb): $RECV1 = {
+           'cfg' => {
+                      'timeout' => '5',
+                      'mode' => 'norm',
+                      'debug' => {
+                                   'dns' => '1',
+                                   'rpc' => '1'
+                                 },
+                      'sbrsbase' => '23000000000012.sb-adfe2ko9.senderbase.org'
+                    },
+           'req' => 'sbrs',
+           'args' => {
+                       'peer' => {
+                                   'port' => '52337',
+                                   'ipv' => '4',
+                                   'addr' => '10.10.4.84'
+                                 },
+                       'local' => {
+                                    'port' => '25',
+                                    'addr' => '10.10.2.88'
+                                  }
+                     },
+           'id' => '2669'
+         };
+2019-09-26 08:51:23.509 {debug} DNS(id=2669): TXT 84.4.10.10.23000000000012.sb-a                                                                                            dfe2ko9.senderbase.org = 0-48=24|1=QUAD9|4=3249988 (from-cache, ttl=10237s)
+2019-09-26 08:51:23.510 {debug} recvfrom(/data/tmp/repeng/tmpC9J1nf): $RECV1 = {
+           'cfg' => {
+                      'timeout' => '5',
+                      'mode' => 'norm',
+                      'debug' => {
+                                   'dns' => '1',
+                                   'rpc' => '1'
+                                 },
+                      'sbrsbase' => '23000000000012.sb-adfe2ko9.senderbase.org'
+                    },
+           'req' => 'sbrs',
+           'args' => {
+                       'peer' => {
+                                   'port' => '57469',
+                                   'ipv' => '4',
+                                   'addr' => '10.10.4.84'
+                                 },
+                       'local' => {
+                                    'port' => '25',
+                                    'addr' => '10.10.2.88'
+                                  }
+                     },
+           'id' => '2670'
+         };
+2019-09-26 08:51:23.510 {debug} DNS(id=2670): TXT 84.4.10.10.23000000000012.sb-a                                                                                            dfe2ko9.senderbase.org = 0-48=24|1=QUAD9|4=3249988 (from-cache, ttl=10237s)
+2019-09-26 08:51:23.510 {debug} sendto(/data/tmp/repeng/tmpciERQb): $SEND1 = {
+           'reply' => {
+                        'sbnp' => {},
+                        'raw' => '0-48=24|1=QUAD9|4=3249988'
+                      },
+           'id' => '2669'
+         };
+2019-09-26 08:51:23.511 {debug} sendto(/data/tmp/repeng/tmpC9J1nf): $SEND1 = {
+           'reply' => {
+                        'sbnp' => {},
+                        'raw' => '0-48=24|1=QUAD9|4=3249988'
+                      },
+           'id' => '2670'
+         };
+2019-09-26 08:51:23.511 {debug} recvfrom(/data/tmp/repeng/tmpxrdsWM): $RECV1 = {
+           'cfg' => {
+                      'use_auth' => '1',
+                      'timeout' => '5',
+                      'mode' => 'norm',
+                      'debug' => {
+                                   'dns' => '1',
+                                   'rpc' => '1'
+                                 },
+                      'sbrsbase' => 'v1x2s.rf-adfe2ko9.senderbase.org'
+                    },
+           'req' => 'sbrs',
+           'args' => {
+                       'peer' => {
+                                   'port' => '52337',
+                                   'ipv' => '4',
+                                   'addr' => '10.10.4.84'
+                                 },
+                       'local' => {
+                                    'port' => '25',
+                                    'addr' => '10.10.2.88'
+                                  }
+                     },
+           'id' => '2671'
+         };
+2019-09-26 08:51:23.511 {debug} DNS(id=2671): TXT? 1-bcd7d7dce8b29e9a1aa62e6993b                                                                                            5357b.84.4.10.10.v1x2s.rf-adfe2ko9.senderbase.org
+2019-09-26 08:51:23.512 {debug} recvfrom(/data/tmp/repeng/tmpsLyMaC): $RECV1 = {
+           'cfg' => {
+                      'use_auth' => '1',
+                      'timeout' => '5',
+                      'mode' => 'norm',
+                      'debug' => {
+                                   'dns' => '1',
+                                   'rpc' => '1'
+                                 },
+                      'sbrsbase' => 'v1x2s.rf-adfe2ko9.senderbase.org'
+                    },
+           'req' => 'sbrs',
+           'args' => {
+                       'peer' => {
+                                   'port' => '57469',
+                                   'ipv' => '4',
+                                   'addr' => '10.10.4.84'
+                                 },
+                       'local' => {
+                                    'port' => '25',
+                                    'addr' => '10.10.2.88'
+                                  }
+                     },
+           'id' => '2672'
+         };
+2019-09-26 08:51:23.512 {debug} DNS(id=2672): TXT? 1-bcd7d7dce8b29e9a1aa62e6993b                                                                                            5357b.84.4.10.10.v1x2s.rf-adfe2ko9.senderbase.org
+2019-09-26 08:51:23.529 {debug} recvfrom(/data/tmp/repeng/tmpLl318P): $RECV1 = {
+           'cfg' => {
+                      'timeout' => '5',
+                      'mode' => 'norm',
+                      'debug' => {
+                                   'dns' => '1',
+                                   'rpc' => '1'
+                                 },
+                      'sbrsbase' => '23000000000012.sb-adfe2ko9.senderbase.org'
+                    },
+           'req' => 'sbrs',
+           'args' => {
+                       'peer' => {
+                                   'port' => '61490',
+                                   'ipv' => '4',
+                                   'addr' => '10.10.4.84'
+                                 },
+                       'local' => {
+                                    'port' => '25',
+                                    'addr' => '10.10.2.88'
+                                  }
+                     },
+           'id' => '2673'
+         };
+2019-09-26 08:51:23.529 {debug} DNS(id=2673): TXT 84.4.10.10.23000000000012.sb-a                                                                                            dfe2ko9.senderbase.org = 0-48=24|1=QUAD9|4=3249988 (from-cache, ttl=10237s)
+2019-09-26 08:51:23.529 {debug} recvfrom(/data/tmp/repeng/tmpl9z1_1): $RECV1 = {
+           'cfg' => {
+                      'timeout' => '5',
+                      'mode' => 'norm',
+                      'debug' => {
+                                   'dns' => '1',
+                                   'rpc' => '1'
+                                 },
+                      'sbrsbase' => '23000000000012.sb-adfe2ko9.senderbase.org'
+                    },
+           'req' => 'sbrs',
+           'args' => {
+                       'peer' => {
+                                   'port' => '52114',
+                                   'ipv' => '4',
+                                   'addr' => '10.10.4.84'
+                                 },
+                       'local' => {
+                                    'port' => '25',
+                                    'addr' => '10.10.2.88'
+                                  }
+                     },
+           'id' => '2674'
+         };
+2019-09-26 08:51:23.529 {debug} DNS(id=2674): TXT 84.4.10.10.23000000000012.sb-a                                                                                            dfe2ko9.senderbase.org = 0-48=24|1=QUAD9|4=3249988 (from-cache, ttl=10237s)
+2019-09-26 08:51:23.529 {debug} sendto(/data/tmp/repeng/tmpLl318P): $SEND1 = {
+           'reply' => {
+                        'sbnp' => {},
+                        'raw' => '0-48=24|1=QUAD9|4=3249988'
+                      },
+           'id' => '2673'
+         };
+2019-09-26 08:51:23.530 {debug} recvfrom(/data/tmp/repeng/tmpayKylx): $RECV1 = {
+           'cfg' => {
+                      'timeout' => '5',
+                      'mode' => 'norm',
+                      'debug' => {
+                                   'dns' => '1',
+                                   'rpc' => '1'
+                                 },
+                      'sbrsbase' => '23000000000012.sb-adfe2ko9.senderbase.org'
+                    },
+           'req' => 'sbrs',
+           'args' => {
+                       'peer' => {
+                                   'port' => '60967',
+                                   'ipv' => '4',
+                                   'addr' => '10.10.4.84'
+                                 },
+                       'local' => {
+                                    'port' => '25',
+                                    'addr' => '10.10.2.88'
+                                  }
+                     },
+           'id' => '2675'
+         };
+2019-09-26 08:51:23.530 {debug} DNS(id=2675): TXT 84.4.10.10.23000000000012.sb-a                                                                                            dfe2ko9.senderbase.org = 0-48=24|1=QUAD9|4=3249988 (from-cache, ttl=10237s)
+2019-09-26 08:51:23.530 {debug} sendto(/data/tmp/repeng/tmpl9z1_1): $SEND1 = {
+           'reply' => {
+                        'sbnp' => {},
+                        'raw' => '0-48=24|1=QUAD9|4=3249988'
+                      },
+           'id' => '2674'
+         };
+2019-09-26 08:51:23.531 {debug} recvfrom(/data/tmp/repeng/tmpv9ZNXo): $RECV1 = {
+           'cfg' => {
+                      'use_auth' => '1',
+                      'timeout' => '5',
+                      'mode' => 'norm',
+                      'debug' => {
+                                   'dns' => '1',
+                                   'rpc' => '1'
+                                 },
+                      'sbrsbase' => 'v1x2s.rf-adfe2ko9.senderbase.org'
+                    },
+           'req' => 'sbrs',
+           'args' => {
+                       'peer' => {
+                                   'port' => '61490',
+                                   'ipv' => '4',
+                                   'addr' => '10.10.4.84'
+                                 },
+                       'local' => {
+                                    'port' => '25',
+                                    'addr' => '10.10.2.88'
+                                  }
+                     },
+           'id' => '2676'
+         };
+2019-09-26 08:51:23.531 {debug} DNS(id=2676): TXT? 1-bcd7d7dce8b29e9a1aa62e6993b                                                                                            5357b.84.4.10.10.v1x2s.rf-adfe2ko9.senderbase.org
+2019-09-26 08:51:23.531 {debug} sendto(/data/tmp/repeng/tmpayKylx): $SEND1 = {
+           'reply' => {
+                        'sbnp' => {},
+                        'raw' => '0-48=24|1=QUAD9|4=3249988'
+                      },
+           'id' => '2675'
+         };
+2019-09-26 08:51:23.532 {debug} recvfrom(/data/tmp/repeng/tmpjjZE7O): $RECV1 = {
+           'cfg' => {
+                      'use_auth' => '1',
+                      'timeout' => '5',
+                      'mode' => 'norm',
+                      'debug' => {
+                                   'dns' => '1',
+                                   'rpc' => '1'
+                                 },
+                      'sbrsbase' => 'v1x2s.rf-adfe2ko9.senderbase.org'
+                    },
+           'req' => 'sbrs',
+           'args' => {
+                       'peer' => {
+                                   'port' => '52114',
+                                   'ipv' => '4',
+                                   'addr' => '10.10.4.84'
+                                 },
+                       'local' => {
+                                    'port' => '25',
+                                    'addr' => '10.10.2.88'
+                                  }
+                     },
+           'id' => '2677'
+         };
+2019-09-26 08:51:23.532 {debug} DNS(id=2677): TXT? 1-bcd7d7dce8b29e9a1aa62e6993b                                                                                            5357b.84.4.10.10.v1x2s.rf-adfe2ko9.senderbase.org
+2019-09-26 08:51:23.533 {debug} recvfrom(/data/tmp/repeng/tmpBbxrlp): $RECV1 = {
+           'cfg' => {
+                      'use_auth' => '1',
+                      'timeout' => '5',
+                      'mode' => 'norm',
+                      'debug' => {
+                                   'dns' => '1',
+                                   'rpc' => '1'
+                                 },
+                      'sbrsbase' => 'v1x2s.rf-adfe2ko9.senderbase.org'
+                    },
+           'req' => 'sbrs',
+           'args' => {
+                       'peer' => {
+                                   'port' => '60967',
+                                   'ipv' => '4',
+                                   'addr' => '10.10.4.84'
+                                 },
+                       'local' => {
+                                    'port' => '25',
+                                    'addr' => '10.10.2.88'
+                                  }
+                     },
+           'id' => '2678'
+         };
+2019-09-26 08:51:23.533 {debug} DNS(id=2678): TXT? 1-bcd7d7dce8b29e9a1aa62e6993b                                                                                            5357b.84.4.10.10.v1x2s.rf-adfe2ko9.senderbase.org
+2019-09-26 08:51:23.831 {debug} DNS(id=2671): TXT 1-bcd7d7dce8b29e9a1aa62e6993b5                                                                                            357b.84.4.10.10.v1x2s.rf-adfe2ko9.senderbase.org = NXDOMAIN (cached)
+2019-09-26 08:51:23.831 {debug} sendto(/data/tmp/repeng/tmpxrdsWM): $SEND1 = {
+           'reply' => {
+                        'sbnp' => {},
+                        'err' => 'NXDOMAIN'
+                      },
+           'id' => '2671'
+         };
+2019-09-26 08:51:23.831 {debug} DNS(id=2672): TXT 1-bcd7d7dce8b29e9a1aa62e6993b5                                                                                            357b.84.4.10.10.v1x2s.rf-adfe2ko9.senderbase.org = NXDOMAIN (cached)
+2019-09-26 08:51:23.832 {debug} sendto(/data/tmp/repeng/tmpsLyMaC): $SEND1 = {
+           'reply' => {
+                        'sbnp' => {},
+                        'err' => 'NXDOMAIN'
+                      },
+           'id' => '2672'
+         };
+2019-09-26 08:51:23.832 {debug} DNS(id=2676): TXT 1-bcd7d7dce8b29e9a1aa62e6993b5                                                                                            357b.84.4.10.10.v1x2s.rf-adfe2ko9.senderbase.org = NXDOMAIN (cached)
+2019-09-26 08:51:23.832 {debug} sendto(/data/tmp/repeng/tmpv9ZNXo): $SEND1 = {
+           'reply' => {
+                        'sbnp' => {},
+                        'err' => 'NXDOMAIN'
+                      },
+           'id' => '2676'
+         };
+2019-09-26 08:51:23.832 {debug} DNS(id=2677): TXT 1-bcd7d7dce8b29e9a1aa62e6993b5                                                                                            357b.84.4.10.10.v1x2s.rf-adfe2ko9.senderbase.org = NXDOMAIN (cached)
+2019-09-26 08:51:23.833 {debug} sendto(/data/tmp/repeng/tmpjjZE7O): $SEND1 = {
+           'reply' => {
+                        'sbnp' => {},
+                        'err' => 'NXDOMAIN'
+                      },
+           'id' => '2677'
+         };
+2019-09-26 08:51:23.833 {debug} DNS(id=2678): TXT 1-bcd7d7dce8b29e9a1aa62e6993b5                                                                                            357b.84.4.10.10.v1x2s.rf-adfe2ko9.senderbase.org = NXDOMAIN (cached)
+2019-09-26 08:51:23.833 {debug} sendto(/data/tmp/repeng/tmpBbxrlp): $SEND1 = {
+           'reply' => {
+                        'sbnp' => {},
+                        'err' => 'NXDOMAIN'
+                      },
+           'id' => '2678'
+         };
+2019-09-26 08:51:42.772 {info} stat: wc=59.966, cache_hit=5, cache_neg=5, ru_uti                                                                                            me=0.013, ru_ixrss=96, ru_idrss=29528, ru_isrss=256, ru_msgsnd=17, ru_msgrcv=17,                                                                                             ru_nvcsw=13, ru_nivcsw=6, cpu=0%
+2019-09-26 08:52:00.510 {error} HVM: DNS returned NXDOMAIN
+2019-09-26 08:52:42.787 {info} stat: wc=60.014, ru_utime=0.001, ru_stime=0.014,                                                                                             ru_ixrss=96, ru_idrss=29528, ru_isrss=256, ru_msgsnd=3, ru_msgrcv=3, ru_nvcsw=10                                                                                            , cpu=0%
+2019-09-26 08:53:42.809 {info} stat: wc=60.023, ru_stime=0.000, ru_msgsnd=2, ru_                                                                                            msgrcv=2, ru_nvcsw=6, cpu=0%
+10.10.2.882019-09-26 08:54:42.784 {info} stat: wc=59.975, ru_stime=0.000, ru_msg                                                                                            snd=2, ru_msgrcv=2, ru_nvcsw=6, cpu=0%
+2019-09-26 08:55:42.816 {info} stat: wc=60.032, ru_stime=0.000, ru_ixrss=48, ru_                                                                                            idrss=14764, ru_isrss=128, ru_msgsnd=2, ru_msgrcv=2, ru_nvcsw=6, cpu=0%
+2019-09-26 08:56:04.058 {info} RVS configuration fetch error: nxdomain
+2019-09-26 08:56:04.058 {debug} RVS configuration fetch interval: 300s
+^C
+vm21esa0088:rtestuser 3] pwd
+/root
+vm21esa0088:rtestuser 4] vi /data/pub/mail_logs/mail.current
+Tue Sep 24 06:37:36 2019 Warning: SDS_CLIENT: Exception reloading sds_client con
+fig (TimeoutError(), 'Timed out making request to sds client')
+Tue Sep 24 06:37:36 2019 Info: SDS_CLIENT: URL scanner enabled=0
+Tue Sep 24 06:37:42 2019 Warning: SDS_CLIENT: Exception reloading sds_client con
+fig (TimeoutError(), 'Timed out making request to sds client')
+Tue Sep 24 06:37:42 2019 Info: SDS_CLIENT: URL scanner enabled=0
+Tue Sep 24 06:37:48 2019 Warning: SDS_CLIENT: Exception reloading sds_client con
+fig (TimeoutError(), 'Timed out making request to sds client')
+Tue Sep 24 06:37:48 2019 Info: SDS_CLIENT: URL scanner enabled=0
+Tue Sep 24 06:37:55 2019 Info: graymail [CONFIG] Graymail process is now enabled
+
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 1 interface Management (10.10.2.88)
+ address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 1 ACCEPT SG UNKNOWNLIST match sbrs[none] SBR
+S unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 2 interface Management (10.10.2.88)
+ address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 2 ACCEPT SG UNKNOWNLIST match sbrs[none] SBR
+S unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 3 interface Management (10.10.2.88)
+ address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 3 ACCEPT SG UNKNOWNLIST match sbrs[none] SBR
+S unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 4 interface Management (10.10.2.88)
+ address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 4 ACCEPT SG UNKNOWNLIST match sbrs[none] SBR
+S unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 5 interface Management (10.10.2.88)
+ address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 5 ACCEPT SG UNKNOWNLIST match sbrs[none] SBR
+S unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 6 interface Management (10.10.2.88)
+ address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 6 ACCEPT SG UNKNOWNLIST match sbrs[none] SBR
+S unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 7 interface Management (10.10.2.88)
+ address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 7 ACCEPT SG UNKNOWNLIST match sbrs[none] SBR
+S unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 8 interface Management (10.10.2.88)
+ address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 8 ACCEPT SG UNKNOWNLIST match sbrs[none] SBR
+S unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 9 interface Management (10.10.2.88)
+ address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 9 ACCEPT SG UNKNOWNLIST match sbrs[none] SBR
+Tue Sep 24 06:37:42 2019 Warning: SDS_CLIENT: Exception reloading sds_client config (TimeoutError(), 'Timed out making request to sds client')
+Tue Sep 24 06:37:42 2019 Info: SDS_CLIENT: URL scanner enabled=0
+Tue Sep 24 06:37:48 2019 Warning: SDS_CLIENT: Exception reloading sds_client config (TimeoutError(), 'Timed out making request to sds client')
+Tue Sep 24 06:37:48 2019 Info: SDS_CLIENT: URL scanner enabled=0
+Tue Sep 24 06:37:55 2019 Info: graymail [CONFIG] Graymail process is now enabled
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 1 interface Management (10.10.2.88) address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 1 ACCEPT SG UNKNOWNLIST match sbrs[none] SBRS unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 2 interface Management (10.10.2.88) address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 2 ACCEPT SG UNKNOWNLIST match sbrs[none] SBRS unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 3 interface Management (10.10.2.88) address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 3 ACCEPT SG UNKNOWNLIST match sbrs[none] SBRS unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 4 interface Management (10.10.2.88) address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 4 ACCEPT SG UNKNOWNLIST match sbrs[none] SBRS unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 5 interface Management (10.10.2.88) address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 5 ACCEPT SG UNKNOWNLIST match sbrs[none] SBRS unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 6 interface Management (10.10.2.88) address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 6 ACCEPT SG UNKNOWNLIST match sbrs[none] SBRS unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 7 interface Management (10.10.2.88) address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 7 ACCEPT SG UNKNOWNLIST match sbrs[none] SBRS unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 8 interface Management (10.10.2.88) address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 8 ACCEPT SG UNKNOWNLIST match sbrs[none] SBRS unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 9 interface Management (10.10.2.88) address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 9 ACCEPT SG UNKNOWNLIST match sbrs[none] SBRS unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 10 interface Management (10.10.2.88) address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 10 ACCEPT SG UNKNOWNLIST match sbrs[none] SBRS unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 11 interface Management (10.10.2.88) address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 11 ACCEPT SG UNKNOWNLIST match sbrs[none] SBRS unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 12 interface Management (10.10.2.88) address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 12 ACCEPT SG UNKNOWNLIST match sbrs[none] SBRS unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 13 interface Management (10.10.2.88) address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 13 ACCEPT SG UNKNOWNLIST match sbrs[none] SBRS unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 14 interface Management (10.10.2.88) address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 14 ACCEPT SG UNKNOWNLIST match sbrs[none] SBRS unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 15 interface Management (10.10.2.88) address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 15 ACCEPT SG UNKNOWNLIST match sbrs[none] SBRS unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 16 interface Management (10.10.2.88) address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 16 ACCEPT SG UNKNOWNLIST match sbrs[none] SBRS unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 17 interface Management (10.10.2.88) address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 17 ACCEPT SG UNKNOWNLIST match sbrs[none] SBRS unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 18 interface Management (10.10.2.88) address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 18 ACCEPT SG UNKNOWNLIST match sbrs[none] SBRS unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 19 interface Management (10.10.2.88) address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 19 ACCEPT SG UNKNOWNLIST match sbrs[none] SBRS unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 20 interface Management (10.10.2.88) address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 20 ACCEPT SG UNKNOWNLIST match sbrs[none] SBRS unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 21 interface Management (10.10.2.88) address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 21 ACCEPT SG UNKNOWNLIST match sbrs[none] SBRS unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 22 interface Management (10.10.2.88) address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 22 ACCEPT SG UNKNOWNLIST match sbrs[none] SBRS unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 23 interface Management (10.10.2.88) address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 23 ACCEPT SG UNKNOWNLIST match sbrs[none] SBRS unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 24 interface Management (10.10.2.88) address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 24 ACCEPT SG UNKNOWNLIST match sbrs[none] SBRS unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 25 interface Management (10.10.2.88) address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 25 ACCEPT SG UNKNOWNLIST match sbrs[none] SBRS unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 26 interface Management (10.10.2.88) address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 26 ACCEPT SG UNKNOWNLIST match sbrs[none] SBRS unable to retrieve country unable to retrieve
+Tue Sep 24 06:45:07 2019 Info: New SMTP ICID 27 interface Management (10.10.2.88) address 10.10.4.84 reverse dns host unknown verified no
+Tue Sep 24 06:45:07 2019 Info: ICID 27 ACCEPT SG UNKNOWNLIST match sbrs[none] SBRS unable to retrieve country unable to retrieve
+:q!
+vm21esa0088:rtestuser 5]
+vm21esa0088:rtestuser 5]
+vm21esa0088:rtestuser 5]
+vm21esa0088:rtestuser 5]
+vm21esa0088:rtestuser 5]
+vm21esa0088:rtestuser 5] pwd
+/root
+vm21esa0088:rtestuser 6]
+vm21esa0088:rtestuser 6]
+vm21esa0088:rtestuser 6]
+vm21esa0088:rtestuser 6] cli
+
+NOTE: This session will expire if left idle for 30 minutes. Any uncommitted configuration changes will be lost. Commit the configuration changes as soon as they are made.
+
+vm21esa0088.cs21> telnet /tmp/hermes.bd
+
+Invalid arguments when processing telnet:
+The address must be a hostname or an IPv4/IPv6 address.
+A hostname is a string that must match the following rules:
+- A label is a set of characters, numbers and dashes.
+- The first and last character of a label must be a letter or a number.
+- The hostname must have at least 2 labels separated by a period.
+- The last label cannot be all numbers.
+: '/tmp/hermes.bd'
+vm21esa0088.cs21>
+
+vm21esa0088.cs21>
+
+vm21esa0088.cs21>
+
+vm21esa0088.cs21> exit
+
+======================================================================================================================================
+
 2019-09-20 11:24:27.815 {debug} DNS(id=165): TXT? 1-fd6727bb0f287ec315a29af86b4a8524.143.3.38.82.v1x2s.rf-adfe2ko9.senderbase.org
 2019-09-20 11:24:28.189 {debug} DNS(id=165): TXT 1-fd6727bb0f287ec315a29af86b4a8524.143.3.38.82.v1x2s.rf-adfe2ko9.senderbase.org = |0=-10.0|1=0.0|2=0.9733|3=0.5|7=Pbl|10=424,19| (cached, ttl=1800s)
 2019-09-20 11:24:28.190 {debug} sendto(/data/tmp/repeng/tmpcesaAE): $SEND1 = {
@@ -16,9 +811,10 @@ Ilakkia Vinayagam-X(ilvinaya - ARICENT TECHNOLOGIES MAURIITIUS LIMITED at Cisco)
                       },
            'id' => '165'
          };
-IV
-Ilakkia Vinayagam-X(ilvinaya - ARICENT TECHNOLOGIES MAURIITIUS LIMITED at Cisco)2:38 PM
+
 this is the request
+------------------------------------------------------------------------------------------------------
+
 'req' => 'sbrs',
            'args' => {
                        'peer' => {
