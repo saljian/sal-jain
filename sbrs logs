@@ -1,0 +1,35 @@
+telnet /tmp/hermes.bd
+import repeng
+repeng.REPENG_DEBUG = True
+/data/log/heimdall/repeng/repeng.current
+IV
+Ilakkia Vinayagam-X(ilvinaya - ARICENT TECHNOLOGIES MAURIITIUS LIMITED at Cisco)2:32 PM
+2019-09-20 11:24:27.815 {debug} DNS(id=165): TXT? 1-fd6727bb0f287ec315a29af86b4a8524.143.3.38.82.v1x2s.rf-adfe2ko9.senderbase.org
+2019-09-20 11:24:28.189 {debug} DNS(id=165): TXT 1-fd6727bb0f287ec315a29af86b4a8524.143.3.38.82.v1x2s.rf-adfe2ko9.senderbase.org = |0=-10.0|1=0.0|2=0.9733|3=0.5|7=Pbl|10=424,19| (cached, ttl=1800s)
+2019-09-20 11:24:28.190 {debug} sendto(/data/tmp/repeng/tmpcesaAE): $SEND1 = {
+           'reply' => {
+                        'sbrs' => '-10.0',
+                        'sbnp' => {
+                                    'ptr' => 'cpc118694-dudl13-2-0-cust142.16-1.cable.virginm.net'
+                                  },
+                        'raw' => '|0=-10.0|1=0.0|2=0.9733|3=0.5|7=Pbl|10=424,19|'
+                      },
+           'id' => '165'
+         };
+IV
+Ilakkia Vinayagam-X(ilvinaya - ARICENT TECHNOLOGIES MAURIITIUS LIMITED at Cisco)2:38 PM
+this is the request
+'req' => 'sbrs',
+           'args' => {
+                       'peer' => {
+                                   'ptr' => 'cpc118694-dudl13-2-0-cust142.16-1.cable.virginm.net',
+                                   'port' => '65242',
+                                   'ipv' => '4',
+                                   'addr' => '82.38.3.143'
+                                 },
+                       'local' => {
+                                    'port' => '25',
+                                    'addr' => '10.10.2.192'
+                                  }
+                     },
+           'id' => '165'
